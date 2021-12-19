@@ -3,7 +3,7 @@
 #+begin_src scheme
 
   (channel
-   (name 'some-channel)
+   (name 'whound)
    (url "https://gitlab.com/winterhound/whound.git")
    (introduction
     (make-channel-introduction
