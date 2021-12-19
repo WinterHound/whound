@@ -1,0 +1,14 @@
+* Channel
+
+#+begin_src scheme
+
+  (channel
+   (name 'some-channel)
+   (url "https://gitlab.com/winterhound/whound.git")
+   (introduction
+    (make-channel-introduction
+     "fe04fabd4e20eb15fb0282f955debb686e7d1e57"
+     (openpgp-fingerprint
+      "BBEC C00F A0F0 FFE3 CAE2  05F8 74D9 034E 4418 F792"))))
+
+#+end_src
