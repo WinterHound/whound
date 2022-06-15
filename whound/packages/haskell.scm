@@ -3,18 +3,45 @@
   #:use-module (gnu artwork)
   #:use-module (guix packages)
   #:use-module (guix download)
+  #:use-module (guix git-download)
   #:use-module (guix build-system haskell)
   #:use-module (gnu packages admin)
   #:use-module (gnu packages aidc)
   #:use-module (gnu packages aspell)
   #:use-module (gnu packages ncurses)
   #:use-module (gnu packages audio)
+  #:use-module (gnu packages messaging)
   #:use-module (gnu packages haskell-apps)
   #:use-module (gnu packages haskell-check)
   #:use-module (gnu packages haskell-crypto)
   #:use-module (gnu packages haskell-web)
   #:use-module (gnu packages haskell-xyz)
   )
+
+
+(define-public ghc-haskell-tdlib
+  (let ((commit "b34e681ff58825a0916e5395175801f5526afe58"))
+    (package
+      (name "ghc-haskell-tdlib")
+      (version (git-version "0" "1" commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/mejgun/haskell-tdlib/")
+               (commit "9bd82101be6e6218daf816228f6141fe89d97e8b")))
+         (file-name (git-file-name name "b34e68"))
+         (sha256
+          (base32 "0f07ikg6fry3hii10ggn50hbnsahvwq1lsmy6wfqgfjq2pr469gi"))))
+      (build-system haskell-build-system)
+      (inputs (list tdlib
+                    ghc-aeson
+                    ghc-unordered-containers))
+      (synopsis "TDLib (Telegram Database library) JSON bindings for Haskell Topics")
+      (description "Telegram library haskell bindings. Examples in other languages can be found here.
+This lib considers prebuilt tdlib dynamic libtdjson.[so|dylib|dll] in lib folder.")
+      (home-page "https://github.com/mejgun/haskell-tdlib")
+      (license  license:bsd-3))))
 
 
 (define-public ghc-data-binary-ieee754
